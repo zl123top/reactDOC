@@ -1,5 +1,5 @@
 # markdown语法
-
+对照输出效果和源码
 ## 标题
     标题 #+空格+文字
 ## 多行文本与代码
@@ -8,13 +8,18 @@
     1.文字
     2.文字
 ## 超链接
-    []()中括弧文字+小括弧地址。不能以tab开头，不然就无法渲染
-    例如：[点击这里跳转](http://zl123.top)<br>
-    格式：\[点击这里跳转\](http://zl123.top)
+    [链接名称](http://zl123.top)
+    <http://zl123.top>
+    这个链接用 1 作为网址变量 [Google][1].
+    [1]: http://www.google.com/
+[链接名称](http://zl123.top)
+<http://zl123.top>
+这个链接用 1 作为网址变量 [Google][1].
+[1]: http://www.google.com/
 ## 图片和超链接
-    1.图片直接用img标签
-    2.![baidu-images](http://www.baidu.com/img/bdlogo.png "baidu") 
- 
-<img src="http://su.bdimg.com/static/superplus/img/logo_white.png" />
-[![image]](http://www.github.com/)
-[image]: /images/02.jpg "github-02.jpg"
+    <img src="http://zl123.top/1.jpg">
+<img src="http://zl123.top/1.jpg">
+## 粗斜体
+    *斜体文本*    _斜体文本_
+    **粗体文本**    __粗体文本__
+    ***粗斜体文本***    ___粗斜体文本___
