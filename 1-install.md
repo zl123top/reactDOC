@@ -22,7 +22,7 @@ $ git push -u origin master # 第一次推送
 ### 当远程已经有了项目文件，先clone后push
 $ git clone git@github.com:childdd/reactDOC.git # 克隆
 
-###### 修改后推送
+##### 修改后推送
 $ git push origin master    # 推送到 Github
 
 ### 补充
