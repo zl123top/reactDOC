@@ -1,4 +1,4 @@
-#安装
+# 安装
 ##安装淘宝镜像
 $ npm install -g cnpm --registry=https://registry.npm.taobao.org
 修改下载资源
