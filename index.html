@@ -61,28 +61,30 @@
             })
             .catch(function(err) {
               /* 处理error */
+              alert('err1');
             });
           }
           else if (navigator.getUserMedia) {
             alert('navigator.getUserMedia');
             navigator.getUserMedia({audio: true, video: { facingMode: { exact: "environment" } }}, function (stream) {
-            video.src = stream;
-            video.play();
-          }, function(error){  
-           console.log(error.name || error);  
-          });
+              video.src = stream;
+              video.play();
+            }, function(error){  
+              alert(error.name || error);  
+            });
           } else if (navigator.webkitGetUserMedia) {
             alert('navigator.webkitGetUserMedia');
             navigator.webkitGetUserMedia({audio: true, video: { facingMode: { exact: "environment" } }}, function (stream) {
-            video.src = window.webkitURL.createObjectURL(stream);
-            video.play();
-          }, function(error){  
-           console.log(error.name || error);  
-          });
+              video.src = window.webkitURL.createObjectURL(stream);
+              video.play();
+            }, function(error){  
+              alert(error.name || error);  
+            });
           }
         
 
       }  
+      liveVideo();
       document.getElementById("live").addEventListener('click',function(){  
         liveVideo();  
       });  
