@@ -48,30 +48,35 @@
         //   console.log(error.name || error);  
         // });  
           if(navigator.mediaDevices){
-            navigator.mediaDevices.getUserMedia({video: true })
+            navigator.mediaDevices.getUserMedia({ video:true})
             .then(function(stream) {
               /* 使用这个stream stream */
-              video.src = stream;
+              if ("srcObject" in video) {
+                  video.srcObject = stream
+              } else {
+                  video.src = window.URL && window.URL.createObjectURL(stream) || stream
+              }
               video.play();
             })
             .catch(function(err) {
               /* 处理error */
             });
-          }else if (navigator.getUserMedia) {
-            navigator.getUserMedia({"video":true}, function (stream) {
-            video.src = stream;
-            video.play();
-          }, function(error){  
-           console.log(error.name || error);  
-          });
-          } else if (navigator.webkitGetUserMedia) {
-            navigator.webkitGetUserMedia({"video":true}, function (stream) {
-            video.src = window.webkitURL.createObjectURL(stream);
-            video.play();
-          }, function(error){  
-           console.log(error.name || error);  
-          });
-        }
+          }
+          // else if (navigator.getUserMedia) {
+          //   navigator.getUserMedia({audio: true, video: { facingMode: { exact: "environment" } }}, function (stream) {
+          //   video.src = stream;
+          //   video.play();
+          // }, function(error){  
+          //  console.log(error.name || error);  
+          // });
+          // } else if (navigator.webkitGetUserMedia) {
+          //   navigator.webkitGetUserMedia({audio: true, video: { facingMode: { exact: "environment" } }}, function (stream) {
+          //   video.src = window.webkitURL.createObjectURL(stream);
+          //   video.play();
+          // }, function(error){  
+          //  console.log(error.name || error);  
+          // });
+          // }
         
 
       }  
