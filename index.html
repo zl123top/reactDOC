@@ -52,11 +52,15 @@
           navigator.getUserMedia({"video":true}, function (stream) {
           video.src = stream;
           video.play();
+          }, function(error){  
+           console.log(error.name || error);  
           });
         } else if (navigator.webkitGetUserMedia) {
           navigator.webkitGetUserMedia({"video":true}, function (stream) {
           video.src = window.webkitURL.createObjectURL(stream);
           video.play();
+          }, function(error){  
+           console.log(error.name || error);  
           });
         }
         //点击截图     
