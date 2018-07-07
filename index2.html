@@ -7,10 +7,34 @@
 <body>
     <video src=""></video>
 <script>
-    if (navigator.mediaDevices === undefined) {
-        navigator.mediaDevices = {};
+    var mediaOpts = {
+        audio: false,
+        video: true,
     }
-    if (navigator.mediaDevices.getUserMedia === undefined) {
+    var video = document.querySelector('video');
+    function successFunc(stream) {
+        
+        if ("srcObject" in video) {
+            video.srcObject = stream
+        } else {
+            video.src = window.URL && window.URL.createObjectURL(stream) || stream
+        }
+        video.play();
+    }
+    function errorFunc(err) {
+        alert(err.name);
+    }
+    // getUserMedia 被标准废除了，mediaDevices 正在取代中
+    if (navigator.mediaDevices) {
+        navigator.mediaDevices.getUserMedia({ video:true})
+        .then(function(stream) {
+            video.src = window.URL.createObjectURL(stream)
+            //successFunc(stream);
+        })
+        .catch(function(err) {
+            alert('err1');
+        });
+    }else if (navigator.mediaDevices.getUserMedia === undefined) {
         navigator.mediaDevices.getUserMedia = function(constraints) {
             var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
             if (!getUserMedia) {
@@ -21,25 +45,9 @@
             });
         }
     }
-window.URL = (window.URL || window.webkitURL || window.mozURL || window.msURL);
-        var mediaOpts = {
-            audio: false,
-            video: true,
-        }
-            function successFunc(stream) {
-                var video = document.querySelector('video');
-                if ("srcObject" in video) {
-                    video.srcObject = stream
-                } else {
-                    video.src = window.URL && window.URL.createObjectURL(stream) || stream
-                }
-                video.play();
-            }
-            function errorFunc(err) {
-                alert(err.name);
-            }
+    //window.URL = (window.URL || window.webkitURL || window.mozURL || window.msURL);
 
-            navigator.getUserMedia(mediaOpts, successFunc, errorFunc);
+    //navigator.getUserMedia(mediaOpts, successFunc, errorFunc);
     </script>
 </body>
 </html>
